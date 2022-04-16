@@ -45,7 +45,7 @@ describe CategoriesController do
     end
   end
 
-  describe 'GET #new', :getnew do
+  describe 'GET #new' do
     it "assigns a new Category to @category" do
       get :new
       expect(assigns(:category)).to be_a_new(Category)
@@ -56,4 +56,47 @@ describe CategoriesController do
       expect(:response).to render_template :new
     end
   end
+
+  describe 'GET #edit' do
+    it "assigns the requested category to @category" do
+      category = create(:category)
+      get :edit, params: { id: category }
+      expect(assigns(:category)).to eq category
+    end
+
+    it "renders the :edit template" do
+      category = create(:category)
+      get :edit, params: { id: category }
+      expect(response).to render_template :edit
+    end
+  end
+
+  describe 'POST #create' do  
+    context "with valid attributes" do
+      it "saves the new category in the database" do
+        expect{
+          post :create, params: { category: attributes_for(:category) }
+        }.to change(Category, :count).by(1)
+      end
+
+      it "redirects to categories#show" do
+        post :create, params: { category: attributes_for(:category) }
+        expect(response).to redirect_to(category_path(assigns[:category]))
+      end
+      
+      it "does not save the new category in the database" do
+        expect{
+          post :create, params: { category: attributes_for(:invalid_category) }
+        }.not_to change(Category, :count)
+      end
+
+      it "re-renders the :new template" do
+        post :create, params: { category: attributes_for(:invalid_category) }
+        expect(response).to render_template :new
+      end
+    end
+  end
+
+
+  
 end
