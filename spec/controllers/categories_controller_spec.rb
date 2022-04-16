@@ -97,6 +97,29 @@ describe CategoriesController do
     end
   end
 
+  describe 'PATCH #update', :update do
+    before :each do
+      @category = create(:category)
+    end
+
+    context "with valid attributes" do
+      it "locates the requested @category" do
+        patch :update, params: { id: @category, category: attributes_for(:category) }
+        expect(assigns(:category)).to eq @category
+      end
+
+      it "changes @category's attributes" do
+        patch :update, params: { id: @category, category: attributes_for(:category, name: 'Beverage') }
+        @category.reload
+        expect(@category.name).to eq('Beverage')
+      end
+
+      it "redirects to the category" do
+        patch :update, params: { id: @category, category: attributes_for(:category) }
+        expect(response).to redirect_to @category
+      end
+    end
+  end
 
   
 end
