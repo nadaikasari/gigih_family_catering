@@ -31,7 +31,7 @@ describe CategoriesController do
     end
   end
   
-  describe 'GET #show', :getshow do
+  describe 'GET #show' do
     it "assigns the requested category to @category" do
       category = create(:category)
       get :show, params: { id: category }
@@ -44,5 +44,16 @@ describe CategoriesController do
       expect(response).to render_template :show
     end
   end
-  
+
+  describe 'GET #new', :getnew do
+    it "assigns a new Category to @category" do
+      get :new
+      expect(assigns(:category)).to be_a_new(Category)
+    end
+
+    it "renders the :new template" do
+      get :new
+      expect(:response).to render_template :new
+    end
+  end
 end
