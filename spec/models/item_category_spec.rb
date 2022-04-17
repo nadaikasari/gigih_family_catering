@@ -7,7 +7,7 @@ RSpec.describe ItemCategory, type: :model do
     @category = create(:category)
   end
 
-  it 'is valid with a id', :name do
+  it 'is valid with a id' do
     expect(FactoryBot.build(:item_category)).to be_valid
   end
   
