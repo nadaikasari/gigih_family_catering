@@ -16,12 +16,26 @@ class MenusController < ApplicationController
   def edit
   end
 
+  def create
+    @menu = Menu.new(menu_params)
+    
+    respond_to do |format|
+      if @menu.save
+        format.html { redirect_to menu_url(@menu), notice: "Post was successfully created." }
+        format.json { render :show, status: :created, location: @menu }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @menu.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   def set_menu
     @menu = Menu.find(params[:id])
   end
   
   def menu_params
-    params.require(:menu).permit(:name)
+    params.require(:menu).permit(:name, :description, :price)
   end
 end
