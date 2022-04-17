@@ -122,6 +122,26 @@ describe CategoriesController do
     end
   end
 
+  describe 'PATCH #update' do
+    before :each do
+      @category = create(:category)
+    end
+
+    context 'with invalid attributes' do
+      it 'does not save the updated category in the database' do
+        patch :update, params: { id: @category, category: attributes_for(:invalid_category) }
+        expect(@category.name).not_to eq('')
+      end
+
+      it 're-renders the edit template' do
+        patch :update, params: { id: @category, category: attributes_for(:invalid_category) }
+        expect(assigns(:category)).to eq @category
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+
   describe 'DELETE #destroy' do
     before :each do
       @category = create(:category)
