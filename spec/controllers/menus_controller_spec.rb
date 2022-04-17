@@ -31,5 +31,18 @@ describe MenusController do
     end
   end
 
+  describe 'GET #show', :show do
+    it "assigns the requested menu to @menu" do
+      menu = create(:menu)
+      get :show, params: { id: menu }
+      expect(assigns(:menu)).to eq menu
+    end
+
+    it "renders the :show template" do
+      menu = create(:menu)
+      get :show, params: { id: menu }
+      expect(response).to render_template :show
+    end
+  end
 
 end
