@@ -42,6 +42,15 @@ class MenusController < ApplicationController
     end
   end
 
+  def destroy
+    @menu.destroy
+
+    respond_to do |format|
+      format.html { redirect_to menu_url, notice: "Menu was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
   def set_menu
     @menu = Menu.find(params[:id])

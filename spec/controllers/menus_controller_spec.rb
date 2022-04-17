@@ -121,7 +121,7 @@ describe MenusController do
     end
   end
 
-  describe 'PATCH #update', :updateinvalid do
+  describe 'PATCH #update' do
     before :each do
       @menu = create(:menu)
     end
@@ -139,4 +139,23 @@ describe MenusController do
       end
     end
   end
+
+  describe 'DELETE #destroy', :destroy do
+    before :each do
+      @menu = create(:menu)
+    end
+
+    it "deletes the menu from the database" do
+      expect{
+        delete :destroy, params: { id: @menu }
+      }.to change(Menu, :count).by(-1)
+    end
+
+    it "redirects to menus#index" do
+      delete :destroy, params: { id: @menu }
+      expect(response).to redirect_to menu_url
+    end
+  end
+
+
 end
