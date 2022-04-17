@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :item_category
+  has_many :item_categories
 
   validates :name, presence: true, uniqueness: true
 

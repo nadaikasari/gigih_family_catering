@@ -33,5 +33,9 @@ RSpec.describe Category, type: :model do
       end
     end
   end
+
+  it'should have_many :item_categories', :testmany do
+      expect(Category.reflect_on_association(:item_categories).macro).to eq :has_many
+  end
   
 end
