@@ -45,7 +45,7 @@ RSpec.describe Menu, type: :model do
     expect(menu.errors[:description]).to include("is too long (maximum is 150 characters)")
   end
 
-  describe 'self#by_letter', :selfbyletter do
+  describe 'self#by_letter' do
     context 'with matching letter' do
       it "should return a sorted array of results that match" do
         menu1 = FactoryBot.create(:menu, name: 'Nasi')
