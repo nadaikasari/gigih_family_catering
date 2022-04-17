@@ -5,4 +5,7 @@ RSpec.describe ItemCategory, type: :model do
       expect(ItemCategory.reflect_on_association(:menu).macro).to eq :belongs_to
   end
 
+  it'should belongs_to :categories' do
+      expect(ItemCategory.reflect_on_association(:categories).macro).to eq :belongs_to
+  end
 end
