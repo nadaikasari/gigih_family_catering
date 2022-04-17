@@ -1,8 +1,8 @@
 class CreateItemCategories < ActiveRecord::Migration[7.0]
   def change
     create_table :item_categories do |t|
-      t.references :menu_id, null: false, foreign_key: true
-      t.references :category_id, null: false, foreign_key: true
+      t.integer :menu_id
+      t.integer :category_id
       
       t.timestamps
     end
