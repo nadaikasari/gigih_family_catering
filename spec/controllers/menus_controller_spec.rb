@@ -140,7 +140,7 @@ describe MenusController do
     end
   end
 
-  describe 'DELETE #destroy', :destroy do
+  describe 'DELETE #destroy' do
     before :each do
       @menu = create(:menu)
     end
