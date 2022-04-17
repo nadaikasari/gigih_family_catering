@@ -22,7 +22,7 @@ RSpec.describe Category, type: :model do
     expect(category.errors[:name]).to include("has already been taken")
   end
 
-  describe 'self#by_letter', :self_byletter do
+  describe 'self#by_letter' do
     context 'with matching letter' do
       it "should return a sorted array of results that match" do
         category1 = FactoryBot.create(:category, name: 'Beverage')
@@ -34,7 +34,7 @@ RSpec.describe Category, type: :model do
     end
   end
 
-  it'should have_many :item_categories', :testmany do
+  it'should have_many :item_categories' do
       expect(Category.reflect_on_association(:item_categories).macro).to eq :has_many
   end
   
