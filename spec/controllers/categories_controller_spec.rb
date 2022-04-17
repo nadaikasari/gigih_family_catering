@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe CategoriesController do
+  
   describe 'GET #index' do
     context 'with params[:letter]' do
       it "populates an array of categories starting with the letter" do

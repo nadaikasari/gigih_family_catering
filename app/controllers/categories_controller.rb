@@ -1,12 +1,13 @@
 class CategoriesController < ApplicationController
-  before_action :set_category, only: %i[ show edit update destroy ]
+
+  before_action :set_category, only: [:show, :edit, :update, :destroy ]
   
   def index
     @categories = params[:letter].nil? ? Category.all : Category.by_letter(params[:letter])
   end
 
   def show
-    @category = Category.find(params[:id])
+    # @category = Category.find(params[:id])
   end
 
   def new
@@ -14,7 +15,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    # @category = Category.find(params[:id])
   end
 
   def create
