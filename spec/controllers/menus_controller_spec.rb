@@ -121,5 +121,22 @@ describe MenusController do
     end
   end
 
+  describe 'PATCH #update', :updateinvalid do
+    before :each do
+      @menu = create(:menu)
+    end
 
+    context 'with invalid attributes' do
+      it 'does not save the updated menu in the database' do
+        patch :update, params: { id: @menu, menu: attributes_for(:invalid_menu, name: "Mie", price: "Seribu") }
+        expect(@menu.name).not_to eq('Mie')
+      end
+
+      it 're-renders the edit template' do
+        patch :update, params: { id: @menu, menu: attributes_for(:invalid_menu) }
+        expect(assigns(:menu)).to eq @menu
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 end
