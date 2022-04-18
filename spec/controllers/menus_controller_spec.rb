@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe MenusController do
-    describe 'GET #index' do
+  describe 'GET #index' do
     context 'with params[:letter]' do
       it "populates an array of menus starting with the letter" do
         nasi = create(:menu, name: "Nasi")
