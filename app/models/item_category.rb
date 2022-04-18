@@ -4,5 +4,8 @@ class ItemCategory < ApplicationRecord
 
   validates :menu_id, presence: true
   validates :category_id, presence: true
-  
+
+  def self.by_id(id)
+    where("menu_id = #{id}").order(:menu_id)
+  end
 end
