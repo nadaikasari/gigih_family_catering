@@ -4,4 +4,8 @@ FactoryBot.define do
     menu_id {1}
   end
 
+  factory :invalid_item_category, parent: :item_category do
+    category_id {nil}
+    menu_id {nil}
+  end
 end
