@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe CustomerController do 
   
-describe 'GET #index', :index do
+describe 'GET #index' do
     context 'with params[:letter]' do
       it "populates an array of customer starting with the letter" do
         customer1 = create(:customer, name: "Nadiya")
