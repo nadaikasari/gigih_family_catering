@@ -25,5 +25,13 @@ RSpec.describe Customer, type: :model do
 
     expect(FactoryBot.build(:customer)).to be_valid
   end
+
+  it 'is invalid email with wrong format' do
+    customer = FactoryBot.build(:customer, email: "nadaikasari@gmail")
+
+    customer.valid?
+
+    expect(customer.errors[:email]).to include("is invalid")
+  end
   
 end
