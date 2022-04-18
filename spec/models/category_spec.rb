@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
+  it'should have_many :item_categories' do
+      expect(Category.reflect_on_association(:item_categories).macro).to eq :has_many
+  end
+  
   it 'is valid with a name' do
     expect(FactoryBot.build(:category)).to be_valid
   end
@@ -32,10 +36,5 @@ RSpec.describe Category, type: :model do
         expect(Category.by_letter("D")).to eq([category2, category3])
       end
     end
-  end
-
-  it'should have_many :item_categories' do
-      expect(Category.reflect_on_association(:item_categories).macro).to eq :has_many
-  end
-  
+  end  
 end
