@@ -8,5 +8,4 @@ class ItemCategory < ApplicationRecord
   def self.by_id(id)
     where("menu_id = #{id}").order(:menu_id)
   end
-  
 end

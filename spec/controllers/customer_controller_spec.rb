@@ -13,8 +13,7 @@ describe 'GET #index' do
 
       it "renders the :index template" do
         get :index, params: { letter: 'N' }
-        # expect(response).to render_template :json
-        expect(JSON.parse(response.body)).to eq([])
+        expect(response).to render_template :index
       end
     end
 
@@ -28,8 +27,7 @@ describe 'GET #index' do
 
       it "renders the :index template" do
         get :index
-        # expect(response).to render_template :index
-        expect(JSON.parse(response.body)).to eq([])
+        expect(response).to render_template :index
       end
     end
   end
@@ -44,12 +42,7 @@ describe 'GET #index' do
     it "renders the :show template" do
       customer = create(:customer)
       get :show, params: { id: customer }
-      expected = {
-        status: :success,
-        data: { foods: [food] }
-      }.to_json
-      # expect(response).to render_template :show
-      expect(JSON.parse(response.body)).to eq([])
+      expect(response).to render_template :show
     end
   end
 
@@ -89,7 +82,7 @@ describe 'GET #index' do
 
       it "redirects to customer#show" do
         post :create, params: { customer: attributes_for(:customer) }
-        expect(response).to redirect_to(cutomer_path(assigns[:customer]))
+        expect(response).to redirect_to(customer_path(assigns[:customer]))
       end
       
       it "does not save the new customer in the database" do
@@ -118,7 +111,7 @@ describe 'GET #index' do
 
       it 're-renders the edit template' do
         patch :update, params: { id: @customer, customer: attributes_for(:invalid_customer) }
-        # expect(assigns(:customer)).to eq @customer
+        expect(assigns(:customer)).to eq @customer
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -161,8 +154,7 @@ describe 'GET #index' do
 
     it "redirects to customers#index" do
       delete :destroy, params: { id: @customer }
-      # expect(response).to redirect_to customer_url
-      expect(response).to have_http_status(302)
+      expect(response).to redirect_to customer_url
     end
   end
 end
