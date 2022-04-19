@@ -30,6 +30,18 @@ class CustomerController < ApplicationController
     end
   end
 
+  def update
+    respond_to do |format|
+      if @customer.update(customer_params)
+        format.html { redirect_to menu_url(@customer), notice: "Customer was successfully updated." }
+        format.json { render :show, status: :ok, location: @customer }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   def set_customer
     @customer = Customer.find(params[:id])
