@@ -58,4 +58,18 @@ describe 'GET #index' do
     end
   end
 
+  describe 'GET #edit' do
+    it "assigns the requested customer to @customer" do
+      customer = create(:customer)
+      get :edit, params: { id: customer }
+      expect(assigns(:customer)).to eq customer
+    end
+
+    it "renders the :edit template" do
+      customer = create(:customer)
+      get :edit, params: { id: customer }
+      expect(response).to render_template :edit
+    end
+  end
+
 end
