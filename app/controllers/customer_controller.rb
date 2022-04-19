@@ -33,7 +33,7 @@ class CustomerController < ApplicationController
   def update
     respond_to do |format|
       if @customer.update(customer_params)
-        format.html { redirect_to menu_url(@customer), notice: "Customer was successfully updated." }
+        format.html { redirect_to customer_url(@customer), notice: "Customer was successfully updated." }
         format.json { render :show, status: :ok, location: @customer }
       else
         format.html { render :edit, status: :unprocessable_entity }

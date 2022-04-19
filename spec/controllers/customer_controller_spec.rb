@@ -82,7 +82,7 @@ describe 'GET #index' do
 
       it "redirects to customer#show" do
         post :create, params: { customer: attributes_for(:customer) }
-        expect(response).to redirect_to(menu_path(assigns[:customer]))
+        expect(response).to redirect_to(cutomer_path(assigns[:customer]))
       end
       
       it "does not save the new customer in the database" do
@@ -98,7 +98,7 @@ describe 'GET #index' do
     end
   end
 
-  describe 'PATCH #update', :update do
+  describe 'PATCH #update' do
     before :each do
       @customer = create(:customer)
     end
@@ -110,9 +110,33 @@ describe 'GET #index' do
       end
 
       it 're-renders the edit template' do
-        patch :update, params: { id: @customer, customer: attributes_for(:invalid_menu) }
+        patch :update, params: { id: @customer, customer: attributes_for(:invalid_customer) }
         expect(assigns(:customer)).to eq @customer
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'PATCH #update', :updatevalid do
+    before :each do
+      @customer = create(:customer)
+    end
+
+    context "with valid attributes" do
+      it "locates the requested @customer" do
+        patch :update, params: { id: @customer, customer: attributes_for(:customer) }
+        expect(assigns(:customer)).to eq @customer
+      end
+
+      it "changes @customer's attributes" do
+        patch :update, params: { id: @customer, customer: attributes_for(:customer, name: 'Nada') }
+        @customer.reload
+        expect(@customer.name).to eq('Nada')
+      end
+
+      it "redirects to the customer" do
+        patch :update, params: { id: @customer, customer: attributes_for(:customer) }
+        expect(response).to redirect_to @customer
       end
     end
   end
