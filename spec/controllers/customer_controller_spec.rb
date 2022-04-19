@@ -117,7 +117,7 @@ describe 'GET #index' do
     end
   end
 
-  describe 'PATCH #update', :updatevalid do
+  describe 'PATCH #update' do
     before :each do
       @customer = create(:customer)
     end
@@ -138,6 +138,23 @@ describe 'GET #index' do
         patch :update, params: { id: @customer, customer: attributes_for(:customer) }
         expect(response).to redirect_to @customer
       end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    before :each do
+      @customer = create(:customer)
+    end
+
+    it "deletes the customer from the database" do
+      expect{
+        delete :destroy, params: { id: @customer }
+      }.to change(Customer, :count).by(-1)
+    end
+
+    it "redirects to customers#index" do
+      delete :destroy, params: { id: @customer }
+      expect(response).to redirect_to customer_url
     end
   end
 end
