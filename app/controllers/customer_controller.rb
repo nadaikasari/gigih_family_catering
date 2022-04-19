@@ -10,6 +10,7 @@ class CustomerController < ApplicationController
   end
 
   def new
+    @customer = Customer.new
   end
 
   def edit
