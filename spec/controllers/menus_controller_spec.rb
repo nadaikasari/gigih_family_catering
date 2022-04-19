@@ -31,7 +31,7 @@ describe MenusController do
     end
   end
 
-  describe 'GET #show', :show do
+  describe 'GET #show' do
     it "assigns the requested menu to @menu" do
       menu = create(:menu)
       get :show, params: { id: menu }
