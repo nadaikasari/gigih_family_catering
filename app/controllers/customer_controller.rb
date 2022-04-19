@@ -42,6 +42,15 @@ class CustomerController < ApplicationController
     end
   end
 
+  def destroy
+    @customer.destroy
+
+    respond_to do |format|
+      format.html { redirect_to customer_url, notice: "Customer was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
   private
   def set_customer
     @customer = Customer.find(params[:id])
