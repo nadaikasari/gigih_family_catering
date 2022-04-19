@@ -16,6 +16,20 @@ class CustomerController < ApplicationController
   def edit
   end
 
+  def create
+    @customer = Customer.new(customer_params)
+    
+    respond_to do |format|
+      if @customer.save
+        format.html { redirect_to menu_url(@customer), notice: "Menu was successfully created." }
+        format.json { render :show, status: :created, location: @customer }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @customer.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
   def set_customer
     @customer = Customer.find(params[:id])
