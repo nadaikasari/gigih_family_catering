@@ -98,4 +98,22 @@ describe 'GET #index' do
     end
   end
 
+  describe 'PATCH #update', :update do
+    before :each do
+      @customer = create(:customer)
+    end
+
+    context 'with invalid attributes' do
+      it 'does not save the updated customer in the database' do
+        patch :update, params: { id: @customer, customer: attributes_for(:invalid_customer, name: "Nada", email: nil) }
+        expect(@customer.name).not_to eq('Nada')
+      end
+
+      it 're-renders the edit template' do
+        patch :update, params: { id: @customer, customer: attributes_for(:invalid_menu) }
+        expect(assigns(:customer)).to eq @customer
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
 end
