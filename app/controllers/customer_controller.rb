@@ -4,6 +4,7 @@ class CustomerController < ApplicationController
   
   def index
     @customers = params[:letter].nil? ? Customer.all : Customer.by_letter(params[:letter])
+    render json: @customers
   end
 
   def show
