@@ -8,6 +8,7 @@ class CustomerController < ApplicationController
   end
 
   def show
+    render json: @customer
   end
 
   def new
@@ -22,8 +23,9 @@ class CustomerController < ApplicationController
     
     respond_to do |format|
       if @customer.save
-        format.html { redirect_to menu_url(@customer), notice: "Customer was successfully created." }
-        format.json { render :show, status: :created, location: @customer }
+        # format.html { redirect_to menu_url(@customer), notice: "Customer was successfully created." }
+        # format.json { render :show, status: :created, location: @customer }
+        render json: Customer.new(@customer).as_json, status: :created
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @customer.errors, status: :unprocessable_entity }
@@ -58,6 +60,6 @@ class CustomerController < ApplicationController
   end
   
   def customer_params
-    params.require(:customer).permit(:name, :email, :phone)
+    params.permit(:name, :email, :phone)
   end
 end
