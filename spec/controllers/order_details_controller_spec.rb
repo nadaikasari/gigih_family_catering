@@ -22,5 +22,18 @@ describe OrderDetailsController do
             expect(response).to render_template :index
         end
     end
+    
+    describe 'GET #show' do
+        it "assigns the requested order_detail to @order_detail" do
+            order_detail = create(:order_detail)
+            get :show, params: { id: order_detail }
+            expect(assigns(:order_detail)).to eq order_detail
+        end
 
+        it "renders the :show template" do
+            order_detail = create(:order_detail)
+            get :show, params: { id: order_detail }
+            expect(response).to render_template :show
+        end
+    end
 end
