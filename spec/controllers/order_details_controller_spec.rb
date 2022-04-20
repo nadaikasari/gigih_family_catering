@@ -48,4 +48,18 @@ describe OrderDetailsController do
             expect(:response).to render_template :new
         end
     end
+
+    describe 'GET #edit' do
+        it "assigns the requested Order detail to @order_detail" do
+            order_detail = create(:order_detail)
+            get :edit, params: { id: order_detail }
+            expect(assigns(:order_detail)).to eq order_detail
+        end
+
+        it "renders the :edit template" do
+            order_detail = create(:order_detail)
+            get :edit, params: { id: order_detail }
+            expect(response).to render_template :edit
+        end
+    end
 end
