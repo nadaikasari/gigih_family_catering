@@ -36,4 +36,16 @@ describe OrderDetailsController do
             expect(response).to render_template :show
         end
     end
+
+    describe 'GET #new' do
+        it "assigns a new Order detail to @order_detail" do
+            get :new
+            expect(assigns(:order_detail)).to be_a_new(OrderDetail)
+        end
+
+        it "renders the :new template" do
+            get :new
+            expect(:response).to render_template :new
+        end
+    end
 end
