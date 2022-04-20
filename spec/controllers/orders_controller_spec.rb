@@ -46,4 +46,18 @@ describe OrdersController do
         end
     end
 
+    describe 'GET #edit' do
+        it "assigns the requested order to @order" do
+            order = create(:order)
+            get :edit, params: { id: order }
+            expect(assigns(:order)).to eq order
+        end
+
+        it "renders the :edit template" do
+            order = create(:order)
+            get :edit, params: { id: order }
+            expect(response).to render_template :edit
+        end
+    end
+
 end
