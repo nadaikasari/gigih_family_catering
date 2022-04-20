@@ -86,7 +86,7 @@ describe OrdersController do
         end
     end
 
-    describe 'PATCH #update', :valid do
+    describe 'PATCH #update' do
         before :each do
             @order = create(:order)
         end
@@ -110,4 +110,20 @@ describe OrdersController do
         end
     end
 
+    describe 'DELETE #destroy' do
+        before :each do
+            @order = create(:order)
+        end
+
+        it "deletes the order from the database" do
+            expect{
+                delete :destroy, params: { id: @order }
+            }.to change(Order, :count).by(-1)
+        end
+
+        it "redirects to order#index" do
+            delete :destroy, params: { id: @order }
+            expect(response).to redirect_to orders_url
+        end
+  end
 end
