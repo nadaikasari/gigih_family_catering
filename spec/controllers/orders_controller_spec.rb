@@ -144,5 +144,5 @@ describe OrdersController do
             delete :destroy, params: { id: @order }
             expect(response).to redirect_to orders_url
         end
-  end
+    end
 end

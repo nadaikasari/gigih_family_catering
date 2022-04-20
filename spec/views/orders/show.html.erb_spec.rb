@@ -1,11 +1,5 @@
 require 'rails_helper'
 
 RSpec.describe "orders/show", type: :view do
-  before(:each) do
-    @order = assign(:order, Order.create!())
-  end
-
-  it "renders attributes in <p>" do
-    render
-  end
+  pending "add some examples to (or delete) #{__FILE__}"
 end

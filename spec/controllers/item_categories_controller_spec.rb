@@ -129,4 +129,21 @@ describe ItemCategoriesController do
             end
         end
     end
+
+    describe 'DELETE #destroy' do
+        before :each do
+            @item_category = create(:item_category)
+        end
+
+        it "deletes the item_category from the database" do
+            expect{
+                delete :destroy, params: { id: @item_category }
+            }.to change(ItemCategory, :count).by(-1)
+        end
+
+        it "redirects to item_category#index" do
+            delete :destroy, params: { id: @item_category }
+            expect(response).to redirect_to item_categories_url
+        end
+    end
 end
