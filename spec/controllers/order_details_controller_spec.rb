@@ -63,6 +63,32 @@ describe OrderDetailsController do
         end
     end
 
+    describe 'POST #create', :des do  
+        context "with valid attributes" do
+            it "saves the new order detail in the database" do
+                expect{
+                post :create, params: { order_detail: attributes_for(:order_detail) }
+                }.to change(OrderDetail, :count).by(1)
+            end
+
+            it "redirects to order_detail#show" do
+                post :create, params: { order_detail: attributes_for(:order_detail) }
+                expect(response).to redirect_to(order_detail_path(assigns[:order_detail]))
+            end
+            
+            it "does not save the new order_detail in the database" do
+                expect{
+                post :create, params: { order_detail: attributes_for(:invalid_order_detail) }
+                }.not_to change(OrderDetail, :count)
+            end
+
+            it "re-renders the :new template" do
+                post :create, params: { order_detail: attributes_for(:invalid_order_detail) }
+                expect(response).to render_template :new
+            end
+        end
+    end
+
     describe 'PATCH #update' do
         before :each do
             @order_detail = create(:order_detail)
