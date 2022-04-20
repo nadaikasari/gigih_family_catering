@@ -86,4 +86,28 @@ describe OrdersController do
         end
     end
 
+    describe 'PATCH #update', :valid do
+        before :each do
+            @order = create(:order)
+        end
+
+        context "with valid attributes" do
+            it "locates the requested @order" do
+                patch :update, params: { id: @order, order: attributes_for(:order) }
+                expect(assigns(:order)).to eq @order
+            end
+
+            it "changes @order's attributes" do
+                patch :update, params: { id: @order, order: attributes_for(:order, status: 'NEW') }
+                @order.reload
+                expect(@order.status).to eq('NEW')
+            end
+
+            it "redirects to the order" do
+                patch :update, params: { id: @order, order: attributes_for(:order) }
+                expect(response).to redirect_to @order
+            end
+        end
+    end
+
 end

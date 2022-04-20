@@ -7,7 +7,7 @@ FactoryBot.define do
 
   factory :invalid_order, parent: :order do
     customer_id { nil }
-    order_date { "2022/04/14" }
+    order_date { nil }
     status { nil }
   end
 end
