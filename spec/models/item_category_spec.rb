@@ -8,4 +8,5 @@ RSpec.describe ItemCategory, type: :model do
   it'should belongs_to :categories' do
     expect(ItemCategory.reflect_on_association(:category).macro).to eq :belongs_to
   end
+  
 end
