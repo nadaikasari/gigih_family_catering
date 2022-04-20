@@ -1,5 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe OrderDetail, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before :each do
+    @menu = create(:menu)
+    @customer = create(:customer)
+    @order = create(:order)
+  end
+
+  it'should belongs_to :menu' do
+    expect(OrderDetail.reflect_on_association(:menu).macro).to eq :belongs_to
+  end
+
 end
