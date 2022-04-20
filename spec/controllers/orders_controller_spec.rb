@@ -110,6 +110,25 @@ describe OrdersController do
         end
     end
 
+    describe 'PATCH #update' do
+        before :each do
+            @order = create(:order)
+        end
+
+        context 'with invalid attributes' do
+            it 'does not save the updated order in the database' do
+                patch :update, params: { id: @order, order: attributes_for(:invalid_order, customer_id: nil, order_date: "12/07/2000",status: "Update") }
+                expect(@order.status).not_to eq("Update")
+            end
+
+            it 're-renders the edit template' do
+                patch :update, params: { id: @order, order: attributes_for(:invalid_order) }
+                expect(assigns(:order)).to eq @order
+                expect(response).to have_http_status(:unprocessable_entity)
+            end
+        end
+    end
+
     describe 'DELETE #destroy' do
         before :each do
             @order = create(:order)
