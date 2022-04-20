@@ -12,4 +12,8 @@ RSpec.describe OrderDetail, type: :model do
     expect(OrderDetail.reflect_on_association(:menu).macro).to eq :belongs_to
   end
 
+  it'should belongs_to :order' do
+    expect(OrderDetail.reflect_on_association(:order).macro).to eq :belongs_to
+  end
+
 end
