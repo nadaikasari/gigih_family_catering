@@ -20,7 +20,7 @@ RSpec.describe ItemCategory, type: :model do
   end
 
   it 'is invalid without menu_id' do
-    item = FactoryBot.build(:item_category, category_id: nil)
+    item = FactoryBot.build(:item_category, menu_id: nil)
 
     item.valid?
 
