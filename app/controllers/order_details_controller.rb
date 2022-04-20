@@ -1,25 +1,20 @@
 class OrderDetailsController < ApplicationController
   before_action :set_order_detail, only: %i[ show edit update destroy ]
 
-  # GET /order_details or /order_details.json
   def index
     @order_details = OrderDetail.all
   end
 
-  # GET /order_details/1 or /order_details/1.json
   def show
   end
 
-  # GET /order_details/new
   def new
     @order_detail = OrderDetail.new
   end
 
-  # GET /order_details/1/edit
   def edit
   end
 
-  # POST /order_details or /order_details.json
   def create
     @order_detail = OrderDetail.new(order_detail_params)
 
@@ -34,7 +29,6 @@ class OrderDetailsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /order_details/1 or /order_details/1.json
   def update
     respond_to do |format|
       if @order_detail.update(order_detail_params)
@@ -47,7 +41,6 @@ class OrderDetailsController < ApplicationController
     end
   end
 
-  # DELETE /order_details/1 or /order_details/1.json
   def destroy
     @order_detail.destroy
 
@@ -58,13 +51,11 @@ class OrderDetailsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_order_detail
       @order_detail = OrderDetail.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def order_detail_params
-      params.fetch(:order_detail, {})
+      params.fetch(:order_detail, {}).permit(:customer_id, :order_date, :status)
     end
 end

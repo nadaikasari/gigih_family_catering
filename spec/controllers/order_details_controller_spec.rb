@@ -62,4 +62,29 @@ describe OrderDetailsController do
             expect(response).to render_template :edit
         end
     end
+
+    describe 'PATCH #update' do
+        before :each do
+            @order_detail = create(:order_detail)
+        end
+
+        context "with valid attributes" do
+            it "locates the requested @order_detail" do
+                patch :update, params: { id: @order_detail, order_detail: attributes_for(:order_detail) }
+                expect(assigns(:order_detail)).to eq @order_detail
+            end
+
+            it "changes @order_detail's attributes" do
+                patch :update, params: { id: @order_detail, order_detail: attributes_for(:order_detail, menu_id: 1) }
+                @order_detail.reload
+                expect(@order_detail.menu_id).to eq("1")
+            end
+
+            it "redirects to the order_detail" do
+                patch :update, params: { id: @order_detail, order_detail: attributes_for(:order_detail) }
+                expect(response).to redirect_to @order_detail
+            end
+        end
+    end
+
 end
