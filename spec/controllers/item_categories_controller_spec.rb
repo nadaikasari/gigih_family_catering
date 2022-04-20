@@ -61,5 +61,29 @@ describe ItemCategoriesController do
         end
     end
 
+    describe 'POST #create' do  
+        context "with valid attributes" do
+            it "saves the new item category in the database" do
+                expect{
+                post :create, params: { item_category: attributes_for(:item_category) }
+                }.to change(ItemCategory, :count).by(1)
+            end
 
+            it "redirects to item_category#show" do
+                post :create, params: { item_category: attributes_for(:item_category) }
+                expect(response).to redirect_to(item_category_path(assigns[:item_category]))
+            end
+            
+            it "does not save the new item_category in the database" do
+                expect{
+                post :create, params: { item_category: attributes_for(:invalid_item_category) }
+                }.not_to change(ItemCategory, :count)
+            end
+
+            it "re-renders the :new template" do
+                post :create, params: { item_category: attributes_for(:invalid_item_category) }
+                expect(response).to render_template :new
+            end
+        end
+    end
 end
