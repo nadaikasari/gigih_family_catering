@@ -47,5 +47,19 @@ describe ItemCategoriesController do
         end
     end
 
+    describe 'GET #edit' do
+        it "assigns the requested item category to @item_category" do
+            item_category = create(:item_category)
+            get :edit, params: { id: item_category }
+            expect(assigns(:item_category)).to eq item_category
+        end
+
+        it "renders the :edit template" do
+            item_category = create(:item_category)
+            get :edit, params: { id: item_category }
+            expect(response).to render_template :edit
+        end
+    end
+
 
 end
