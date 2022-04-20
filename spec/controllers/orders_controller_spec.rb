@@ -60,4 +60,30 @@ describe OrdersController do
         end
     end
 
+    describe 'POST #create' do  
+        context "with valid attributes" do
+            it "saves the new order in the database" do
+                expect{
+                post :create, params: { order: attributes_for(:order) }
+                }.to change(Order, :count).by(1)
+            end
+
+            it "redirects to order#show" do
+                post :create, params: { order: attributes_for(:order) }
+                expect(response).to redirect_to(order_path(assigns[:order]))
+            end
+            
+            it "does not save the new order in the database" do
+                expect{
+                post :create, params: { order: attributes_for(:invalid_order) }
+                }.not_to change(Order, :count)
+            end
+
+            it "re-renders the :new template" do
+                post :create, params: { order: attributes_for(:invalid_order) }
+                expect(response).to render_template :new
+            end
+        end
+    end
+
 end
