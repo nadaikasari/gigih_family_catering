@@ -26,17 +26,4 @@ RSpec.describe ItemCategory, type: :model do
     expect(item.errors[:category_id]).to include("can't be blank")
     expect(item.errors[:menu_id]).to include("can't be blank")
   end
-
-  describe 'self#by_id' do
-    context 'with matching id' do
-      it "should return a sorted array of results that match" do
-        @menu = create(:menu)
-        menu_id1 = FactoryBot.create(:item_category, menu_id: 1, category_id: 1)
-        menu_id2 = FactoryBot.create(:item_category, menu_id: 2, category_id: 1)
-        menu_id3 = FactoryBot.create(:item_category, menu_id: 2, category_id: 1)
-  
-        expect(ItemCategory.by_id(2)).to eq([menu_id2, menu_id3])
-      end
-    end
-  end  
 end
