@@ -20,7 +20,7 @@ describe OrdersController do
         end
     end
 
-    describe 'GET #show', :show do
+    describe 'GET #show' do
         it "assigns the requested order to @order" do
             order = create(:order)
             get :show, params: { id: order }
@@ -33,4 +33,17 @@ describe OrdersController do
             expect(response).to render_template :show
         end
     end
+
+    describe 'GET #new' do
+        it "assigns a new Order to @order" do
+            get :new
+            expect(assigns(:order)).to be_a_new(Order)
+        end
+
+        it "renders the :new template" do
+            get :new
+            expect(:response).to render_template :new
+        end
+    end
+
 end
