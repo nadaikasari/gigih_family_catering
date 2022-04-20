@@ -58,4 +58,10 @@ RSpec.describe OrderDetail, type: :model do
     expect(order_detail.errors[:price]).to include("is not a number")
   end
 
+  it 'is invalid quantity accept non numeric values' do
+    order_detail = FactoryBot.build(:order_detail, quantity: "dua")
+    order_detail.valid?
+    expect(order_detail.errors[:quantity]).to include("is not a number")
+  end
+
 end
