@@ -86,4 +86,28 @@ describe ItemCategoriesController do
             end
         end
     end
+
+    describe 'PATCH #update' do
+        before :each do
+            @item_category = create(:item_category)
+        end
+
+        context "with valid attributes" do
+            it "locates the requested @item_category" do
+                patch :update, params: { id: @item_category, item_category: attributes_for(:item_category) }
+                expect(assigns(:item_category)).to eq @item_category
+            end
+
+            it "changes @item_category's attributes" do
+                patch :update, params: { id: @item_category, item_category: attributes_for(:item_category, menu_id: 1) }
+                @item_category.reload
+                expect(@item_category.menu_id).to eq(1)
+            end
+
+            it "redirects to the item_category" do
+                patch :update, params: { id: @item_category, item_category: attributes_for(:item_category) }
+                expect(response).to redirect_to @item_category
+            end
+        end
+    end
 end
