@@ -5,8 +5,8 @@ RSpec.describe Menu, type: :model do
     expect(Menu.reflect_on_association(:item_categories).macro).to eq :has_many
   end
 
-  it'should have_many :order_details' do
-    expect(Menu.reflect_on_association(:order_details).macro).to eq :has_many
+  it'should have_many :menus' do
+    expect(Menu.reflect_on_association(:menus).macro).to eq :has_many
   end
 
   it 'is valid with a name, description and price' do
@@ -43,6 +43,12 @@ RSpec.describe Menu, type: :model do
     
     menu.valid?
     expect(menu.errors[:description]).to include("is too long (maximum is 150 characters)")
+  end
+
+  it 'is invalid price accept non numeric values' do
+    menu = FactoryBot.build(:menu, price: "Seribu")
+    menu.valid?
+    expect(menu.errors[:price]).to include("is not a number")
   end
 
   describe 'self#by_letter' do
