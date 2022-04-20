@@ -87,4 +87,23 @@ describe OrderDetailsController do
         end
     end
 
+    describe 'PATCH #update' do
+        before :each do
+            @order_detail = create(:order_detail)
+        end
+
+        context 'with invalid attributes' do
+            it 'does not save the updated order_detail in the database' do
+                patch :update, params: { id: @order_detail, order_detail: attributes_for(:invalid_order_detail, menu_id: "Update") }
+                expect(@order_detail.menu_id).not_to eq("Update")
+            end
+
+            it 're-renders the edit template' do
+                patch :update, params: { id: @order_detail, order_detail: attributes_for(:invalid_order_detail) }
+                expect(assigns(:order_detail)).to eq @order_detail
+                expect(response).to have_http_status(:unprocessable_entity)
+            end
+        end
+    end
+
 end

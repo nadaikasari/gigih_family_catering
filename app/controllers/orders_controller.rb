@@ -56,6 +56,6 @@ class OrdersController < ApplicationController
     end
 
     def order_params
-      params.fetch(:order, {}).permit(:order_id, :menu_id, :price, :quantity)
+      params.fetch(:order, {}).permit(:customer_id, :order_date, :status)
     end
 end

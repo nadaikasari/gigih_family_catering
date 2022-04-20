@@ -1,14 +1,5 @@
 require 'rails_helper'
 
 RSpec.describe "order_details/index", type: :view do
-  before(:each) do
-    assign(:order_details, [
-      OrderDetail.create!(),
-      OrderDetail.create!()
-    ])
-  end
-
-  it "renders a list of order_details" do
-    render
-  end
+  pending "add some examples to (or delete) #{__FILE__}"
 end
