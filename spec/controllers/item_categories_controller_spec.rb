@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ItemCategoryController do
+describe ItemCategoriesController do
 
 
   
