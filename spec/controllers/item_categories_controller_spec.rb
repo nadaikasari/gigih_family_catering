@@ -110,4 +110,23 @@ describe ItemCategoriesController do
             end
         end
     end
+
+    describe 'PATCH #update' do
+        before :each do
+            @item_category = create(:item_category)
+        end
+
+        context 'with invalid attributes' do
+            it 'does not save the updated item_category in the database' do
+                patch :update, params: { id: @item_category, item_category: attributes_for(:invalid_item_category, menu_id: "Update") }
+                expect(@item_category.menu_id).not_to eq("Update")
+            end
+
+            it 're-renders the edit template' do
+                patch :update, params: { id: @item_category, item_category: attributes_for(:invalid_item_category) }
+                expect(assigns(:item_category)).to eq @item_category
+                expect(response).to have_http_status(:unprocessable_entity)
+            end
+        end
+    end
 end
