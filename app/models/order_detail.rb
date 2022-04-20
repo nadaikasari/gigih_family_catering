@@ -4,7 +4,7 @@ class OrderDetail < ApplicationRecord
 
   validates :order_id, presence: true
   validates :menu_id, presence: true
-  validates :price, presence: true
+  validates :price, presence: true, numericality: true
   validates :quantity, presence: true
 
 end
