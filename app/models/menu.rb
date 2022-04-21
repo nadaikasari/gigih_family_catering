@@ -1,5 +1,5 @@
 class Menu < ApplicationRecord
-  has_many :item_categories
+  has_many :catgories
   has_many :order_details
 
   validates :name, presence: true, uniqueness: true

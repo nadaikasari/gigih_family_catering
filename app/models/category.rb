@@ -1,5 +1,5 @@
 class Category < ApplicationRecord
-  has_many :item_categories
+  belongs_to :menu
 
   validates :name, presence: true, uniqueness: true
   

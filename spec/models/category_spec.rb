@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  it'should have_many :item_categories' do
-      expect(Category.reflect_on_association(:item_categories).macro).to eq :has_many
+  it'should belongs_to :menu' do
+      expect(Category.reflect_on_association(:menu).macro).to eq :belongs_to
   end
   
   it 'is valid with a name' do
