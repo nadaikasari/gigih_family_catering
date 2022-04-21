@@ -3,7 +3,7 @@ require 'rails_helper'
 describe OrderDetailsController do
 
     before :each do
-        Menu.create(name: "Nasi Padang", description: "Nasi dengan berbagai macam lauk-pauk khas Indonesia.", price: 10000)
+        Menu.create(name: "Nasi", description: "Nasi putih", price: 2000, category: "[\'Beverage\', \'Drink\']")
         Category.create(name: "Makanan Utama")
         Customer.create(name: "Nadiya", email: "nadiya@gmail.com")
         Order.create(customer_id: 1, order_date: "2022/04/14", status: "NEW")
@@ -103,7 +103,7 @@ describe OrderDetailsController do
             it "changes @order_detail's attributes" do
                 patch :update, params: { id: @order_detail, order_detail: attributes_for(:order_detail, menu_id: 1) }
                 @order_detail.reload
-                expect(@order_detail.menu_id).to eq("1")
+                expect(@order_detail.menu_id).to eq(1)
             end
 
             it "redirects to the order_detail" do

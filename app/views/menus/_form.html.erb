@@ -26,10 +26,10 @@
     <%= form.text_area :description, class: "form-control", rows: 3 %>
   </div>
   <div class="mb-3">
-    <%= form.label :categories, style: "display: block" %>
-    <% Category.all.each do |data| %>
-      <%= form.check_box :categories, { multiple: true }, data.name, nil %>
-      <%= form.label data.name %>
+    <%= form.label :category, style: "display: block" %>
+    <% Category.all.each do |data_category| %>
+      <%= form.check_box :category, { multiple: true }, data_category.name, nil %>
+      <%= form.label data_category.name %>
     <% end %>  
   </div>
       

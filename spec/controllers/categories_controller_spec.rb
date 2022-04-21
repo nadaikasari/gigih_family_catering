@@ -1,13 +1,10 @@
 require 'rails_helper'
 
 describe CategoriesController do
-
-  before :each do
-    Menu.create(name: "Nasi", description: "Nasi putih", price: 2000, categories: "[\'Beverage\', \'Drink\']")
-  end
   
   describe 'GET #index' do
     it "populates an array of all categories" do 
+    Menu.create(name: "Nasi", description: "Nasi putih", price: 2000, category: "Beverage")
       dessert = create(:category, name: "Dessert")
       beverage = create(:category, name: "Beverage")
       get :index

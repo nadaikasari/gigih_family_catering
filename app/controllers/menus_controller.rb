@@ -56,6 +56,6 @@ class MenusController < ApplicationController
     end
 
     def menu_params
-      params.fetch(:menu, {}).permit(:name, :description, :price, categories: [])
+      params.fetch(:menu, {}).permit(:name, :description, :price, category: [])
     end
 end

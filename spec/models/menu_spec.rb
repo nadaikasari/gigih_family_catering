@@ -13,13 +13,14 @@ RSpec.describe Menu, type: :model do
     expect(FactoryBot.build(:menu)).to be_valid
   end
 
-  it 'is invalid without a name and price' do
-    menu = FactoryBot.build(:menu, name: nil, price: nil)
+  it 'is invalid without a name, price and category' do
+    menu = FactoryBot.build(:menu, name: nil, price: nil, category: nil)
 
     menu.valid?
 
     expect(menu.errors[:name]).to include("can't be blank")
     expect(menu.errors[:price]).to include("can't be blank")
+    expect(menu.errors[:category]).to include("can't be blank")
   end
 
   it 'is invalid with a duplicated name' do
