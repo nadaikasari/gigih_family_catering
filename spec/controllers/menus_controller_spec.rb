@@ -153,7 +153,7 @@ describe MenusController do
 
     it "redirects to menus#index" do
       delete :destroy, params: { id: @menu }
-      expect(response).to redirect_to menu_url
+      expect(response).to redirect_to menus_url
     end
   end
 
