@@ -28,8 +28,8 @@
   <div class="mb-3">
     <%= form.label :category, style: "display: block" %>
     <% Category.all.each do |categories| %>
-      <%= check_box_tag "menu[category_ids][]", categories.id %>
-      <%= categories.name%>
+      <%= form.check_box :category, { multiple: true }, categories.name, nil %>
+      <%= form.label categories.name %>
     <% end %>  
   </div>
       
