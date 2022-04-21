@@ -62,5 +62,4 @@ RSpec.describe Menu, type: :model do
       end
     end
   end
-  
 end

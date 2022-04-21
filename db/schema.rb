@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_21_115745) do
+ActiveRecord::Schema.define(version: 2022_04_21_125022) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -26,20 +26,13 @@ ActiveRecord::Schema.define(version: 2022_04_21_115745) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "item_categories", force: :cascade do |t|
-    t.integer "menu_id"
-    t.integer "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "menus", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.float "price"
+    t.text "category"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "categories"
   end
 
   create_table "order_details", force: :cascade do |t|

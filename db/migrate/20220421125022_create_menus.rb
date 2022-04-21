@@ -4,6 +4,7 @@ class CreateMenus < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.float :price
+      t.text :category, array: true
 
       t.timestamps
     end
