@@ -63,7 +63,7 @@ describe OrderDetailsController do
         end
     end
 
-    describe 'POST #create', :des do  
+    describe 'POST #create' do  
         context "with valid attributes" do
             it "saves the new order detail in the database" do
                 expect{
@@ -132,4 +132,20 @@ describe OrderDetailsController do
         end
     end
 
+    describe 'DELETE #destroy' do
+        before :each do
+            @order_detail = create(:order_detail)
+        end
+
+        it "deletes the order_detail from the database" do
+            expect{
+                delete :destroy, params: { id: @order_detail }
+            }.to change(OrderDetail, :count).by(-1)
+        end
+
+        it "redirects to order_detail#index" do
+            delete :destroy, params: { id: @order_detail }
+            expect(response).to redirect_to order_details_url
+        end
+    end
 end
