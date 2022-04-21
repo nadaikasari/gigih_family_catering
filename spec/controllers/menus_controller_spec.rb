@@ -29,6 +29,20 @@ describe MenusController do
         expect(response).to render_template :index
       end
     end
+    
+    context 'getting data category' do
+      it "populates an array of all category" do 
+        category1 = create(:category, name: "Beverage")
+        category2 = create(:category, name: "Drink")
+        get :index
+        expect(assigns(:categories)).to match_array([category1, category2])
+      end
+
+      it "renders the :index template" do
+        get :index
+        expect(response).to render_template :index
+      end
+    end
   end
 
   describe 'GET #show' do
