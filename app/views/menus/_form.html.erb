@@ -25,6 +25,14 @@
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description, class: "form-control", rows: 3 %>
   </div>
+
+  <div class="mb-3">
+    <%= form.label :category, style: "display: block" %>
+    <% Category.all.each do |categories| %>
+      <%= check_box_tag "menu[category_ids][]", categories.id %>
+      <%= categories.name%>
+    <% end %>  
+  </div>
       
   <div>
     <%= form.submit %>
