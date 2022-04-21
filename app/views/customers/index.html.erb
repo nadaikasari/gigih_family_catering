@@ -1,30 +1,30 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Customers   <%= link_to "New customer", new_customer_path, class: "btn btn-success" %></h1>
-  <div class="table">
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Name</th>
-          <th scope="col">Email</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Tools</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @customers.each do |customer| %>
-        <%= render customer %>
-        <tr>
-          <td><%= customer.name %></td>
-          <td><%= customer.email %></td>
-          <td><%= customer.phone %></td>
-          <td>
-            <%= link_to "Show this customer", customer %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<div class="table">
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Tools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+      <%= render customer %>
+      <tr>
+        <td><%= customer.name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.phone %></td>
+        <td>
+          <%= link_to "Show this customer", customer %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 
