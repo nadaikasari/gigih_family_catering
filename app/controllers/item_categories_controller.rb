@@ -1,25 +1,20 @@
 class ItemCategoriesController < ApplicationController
   before_action :set_item_category, only: %i[ show edit update destroy ]
 
-  # GET /item_categories or /item_categories.json
   def index
     @item_categories = ItemCategory.all
   end
 
-  # GET /item_categories/1 or /item_categories/1.json
   def show
   end
 
-  # GET /item_categories/new
   def new
     @item_category = ItemCategory.new
   end
 
-  # GET /item_categories/1/edit
   def edit
   end
 
-  # POST /item_categories or /item_categories.json
   def create
     @item_category = ItemCategory.new(item_category_params)
 
@@ -34,7 +29,6 @@ class ItemCategoriesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /item_categories/1 or /item_categories/1.json
   def update
     respond_to do |format|
       if @item_category.update(item_category_params)
@@ -47,7 +41,6 @@ class ItemCategoriesController < ApplicationController
     end
   end
 
-  # DELETE /item_categories/1 or /item_categories/1.json
   def destroy
     @item_category.destroy
 
@@ -58,12 +51,10 @@ class ItemCategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_item_category
       @item_category = ItemCategory.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def item_category_params
       params.require(:item_category).permit(:menu_id, :category_id)
     end
