@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CustomerController do 
+describe CustomersController do 
   
   describe 'GET #index' do
     context 'with params[:letter]' do
@@ -154,7 +154,7 @@ describe CustomerController do
 
     it "redirects to customers#index" do
       delete :destroy, params: { id: @customer }
-      expect(response).to redirect_to customer_url
+      expect(response).to redirect_to customers_url
     end
   end
 end

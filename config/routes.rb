@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :customers
+  resources :properties
   resources :order_details
   resources :orders
   resources :customer
