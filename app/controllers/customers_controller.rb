@@ -56,6 +56,6 @@ class CustomersController < ApplicationController
     end
 
     def customer_params
-      params.fetch(:customer, {}).permit(:name, :email, :phone)
+      params.fetch(:customers, {}).permit(:name, :email, :phone)
     end
 end
