@@ -11,6 +11,21 @@
     </div>
   <% end %>
 
+  <div class="mb-3">
+    <%= form.label :customer_id, style: "display: block" %>
+    <%= form.select :customer_id, Customer.all.pluck(:email,:id),{prompt:'Select Customer'},{class: "form-control"}%>
+  </div>
+
+  <div class="mb-3">
+      <%= form.label :order_date, class: "form-label" %>
+      <%= form.date_field :order_date, class: "form-control" %>
+  </div>
+        
+  <div class="mb-3">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, ['NEW', 'PAID', 'CANCELED'], {prompt:'Select Status'}, {class: "form-control"} %>
+  </div>
+
   <div>
     <%= form.submit %>
   </div>

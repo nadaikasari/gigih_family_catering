@@ -11,6 +11,7 @@
         <th scope="col">Order Menu</th>
         <th scope="col">Quantity</th>
         <th scope="col">Total</th>
+        <th scope="col">Status</th>
         <th scope="col">Tools</th>
       </tr>
     </thead>
@@ -18,6 +19,11 @@
       <% @orders.each do |order| %>
         <tr>
           <td><%= order.order_date %></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><%= order.status %></td>
           <td><%= link_to "Show this order", order %></td>
         </tr>
       <% end %>
