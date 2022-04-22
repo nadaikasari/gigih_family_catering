@@ -2,7 +2,7 @@ class OrderDetailsController < ApplicationController
   before_action :set_order_detail, only: %i[ show edit update destroy ]
 
   def index
-    @order_details = params[:id].nil? ? OrderDetail.all : OrderDetail.by_order_id(params[:id])
+    @order_details = params[:id].nil? ? OrderDetail.all : O
   end
 
   def show
