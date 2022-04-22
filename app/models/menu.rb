@@ -7,7 +7,7 @@ class Menu < ApplicationRecord
     validates :description, length: {maximum: 150}
     validates :category, presence: true
   
-    def self.by_letter(letter)
-      where("name LIKE ?", "#{letter}%").order(:name)
+    def self.by_id(id)
+      where("id = #{id}").order(:id)
     end
 end

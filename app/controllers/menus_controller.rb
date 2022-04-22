@@ -2,7 +2,7 @@ class MenusController < ApplicationController
   before_action :set_menu, only: %i[ show edit update destroy ]
 
   def index
-    @menus = params[:letter].nil? ? Menu.all : Menu.by_letter(params[:letter])
+    @menus = params[:id].nil? ? Menu.all : Menu.by_id(params[:id])
   end
 
   def show

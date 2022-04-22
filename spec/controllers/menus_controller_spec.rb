@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe MenusController do
   describe 'GET #index' do
-    context 'with params[:letter]' do
-      it "populates an array of menus starting with the letter" do
+    context 'with params[:id]' do
+      it "populates an array of menus starting with the id" do
         nasi = create(:menu, name: "Nasi")
         ayam = create(:menu, name: "Ayam")
-        get :index, params: { letter: 'N' }
+        get :index, params: { id: 1 }
         expect(assigns(:menus)).to match_array([nasi])
       end
 
@@ -16,7 +16,7 @@ describe MenusController do
       end
     end
 
-    context 'without params[:letter]' do
+    context 'without params[:id]' do
       it "populates an array of all menus" do 
         nasi = create(:menu, name: "Nasi")
         ayam = create(:menu, name: "Ayam")

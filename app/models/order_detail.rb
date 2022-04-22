@@ -8,7 +8,7 @@ class OrderDetail < ApplicationRecord
   validates :quantity, presence: true, numericality: true
 
   def total_price(name_menu)
-    Menu.by_letter(name_menu).each do |data_menu|
+    Menu.by_id(name_menu).each do |data_menu|
       return data_menu.price * quantity.to_i
     end
   end

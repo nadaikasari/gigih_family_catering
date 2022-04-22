@@ -52,14 +52,13 @@ RSpec.describe Menu, type: :model do
     expect(menu.errors[:price]).to include("is not a number")
   end
 
-  describe 'self#by_letter' do
-    context 'with matching letter' do
-      it "should return a sorted array of results that match" do
-        menu1 = FactoryBot.create(:menu, name: 'Nasi')
-        menu2 = FactoryBot.create(:menu, name: 'Mie')
-        menu3 = FactoryBot.create(:menu, name: 'Nasi goreng')
+  describe 'self#by_id' do
+    context 'with matching id' do
+      it "should return a array of results that match" do
+        menu1 = FactoryBot.create(:menu, id: 1, name: "Sayur")
+        menu2 = FactoryBot.create(:menu, id: 2, name: "Nasi")
   
-        expect(Menu.by_letter("N")).to eq([menu1, menu3])
+        expect(Menu.by_id(1)).to eq([menu1])
       end
     end
   end
