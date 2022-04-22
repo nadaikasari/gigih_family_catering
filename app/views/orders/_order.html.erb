@@ -1,4 +1,7 @@
 <div id="<%= dom_id order %>">
+  
+  <% session[:order_id] = order.id %>
+    
   <p>
     <strong>Order Date:</strong>
     <%= order.order_date %>

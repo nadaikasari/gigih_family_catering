@@ -10,8 +10,29 @@
       </ul>
     </div>
   <% end %>
+    
+  <%= form.hidden_field :order_id, class: "form-control", value: session[:order_id] %>
+      
+  <div class="mb-3 row">
+    <%= form.label :menu, style: "display: block", class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-10">
+      <%= form.select :menu_id, Menu.all.pluck(:name,:id),{prompt:'Select Menu'},{class: "form-control", id: "menu"}%>
+    </div>
+  </div>
 
+  <div class="mb-3 row">
+    <%= form.label :quantity, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-1">
+      <%= form.text_field :quantity, class: "form-control" %>
+    </div>
+  </div>
+    
+  <div class="mb-3">
+    <%= @order_detail.total_price("Pizza")%>
+  </div>
+    
   <div>
     <%= form.submit %>
   </div>
+    
 <% end %>

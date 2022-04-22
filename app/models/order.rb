@@ -4,5 +4,5 @@ class Order < ApplicationRecord
   has_many :order_details
 
   validates :customer_id, presence: true
-  
+
 end
