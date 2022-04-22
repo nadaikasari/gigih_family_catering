@@ -1,14 +1,32 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>Order details</h1>
-
-<div id="order_details">
-  <% @order_details.each do |order_detail| %>
-    <%= render order_detail %>
-    <p>
-      <%= link_to "Show this order detail", order_detail %>
-    </p>
-  <% end %>
+<h5>Date Order : </h5>
+<h5>Customer Email : </h5>
+<h5>Status : </h5>
+<h5>Orders : </h5>
+<div class="table">
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Menu</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Total</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_details.each do |order_detail| %>
+        <tr>
+          <td><%= order_detail.find_menu_name %></td>
+          <td><%= order_detail.price %></td>
+          <td><%= order_detail.quantity %></td>
+          <td><%= order_detail.count_total_price %></td>
+          <td><%= link_to "Show this order detail", order_detail %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
 </div>
-
-<%= link_to "New order detail", new_order_detail_path %>
