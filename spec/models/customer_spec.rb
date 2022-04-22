@@ -34,14 +34,13 @@ RSpec.describe Customer, type: :model do
     expect(customer.errors[:email]).to include("is invalid")
   end
 
-  describe 'self#by_letter' do
-    context 'with matching letter' do
-      it "should return a sorted array of results that match" do
+  describe 'self#by_id' do
+    context 'with matching id' do
+      it "should return a array of results that match" do
         customer1 = FactoryBot.create(:customer, name: 'Nada')
         customer2 = FactoryBot.create(:customer, name: 'Ika')
-        customer3 = FactoryBot.create(:customer, name: 'Nadia')
   
-        expect(Customer.by_letter("N")).to eq([customer1, customer3])
+        expect(Customer.by_id(1)).to eq([customer1])
       end
     end
   end

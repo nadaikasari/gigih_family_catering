@@ -2,7 +2,7 @@ class CustomersController < ApplicationController
   before_action :set_customer, only: %i[ show edit update destroy ]
 
   def index
-    @customers = params[:letter].nil? ? Customer.all : Customer.by_letter(params[:letter])
+    @customers = params[:id].nil? ? Customer.all : Customer.by_id(params[:id])
   end
 
   def show

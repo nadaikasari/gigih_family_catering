@@ -3,21 +3,21 @@ require 'rails_helper'
 describe CustomersController do 
   
   describe 'GET #index' do
-    context 'with params[:letter]' do
-      it "populates an array of customer starting with the letter" do
+    context 'with params[:id]' do
+      it "populates an array of customer starting with the id" do
         customer1 = create(:customer, name: "Nadiya")
         customer2 = create(:customer, name: "Hidayah")
-        get :index, params: { letter: 'N' }
+        get :index, params: { id: 1 }
         expect(assigns(:customers)).to match_array([customer1])
       end
 
       it "renders the :index template" do
-        get :index, params: { letter: 'N' }
+        get :index, params: { id: 1 }
         expect(response).to render_template :index
       end
     end
 
-    context 'without params[:letter]' do
+    context 'without params[:id]' do
       it "populates an array of all customers" do 
         customer1 = create(:customer, name: "Nadiya")
         customer2 = create(:customer, name: "Hidayah")

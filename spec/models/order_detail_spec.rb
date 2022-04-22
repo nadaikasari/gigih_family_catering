@@ -16,7 +16,7 @@ RSpec.describe OrderDetail, type: :model do
     expect(OrderDetail.reflect_on_association(:order).macro).to eq :belongs_to
   end
 
-  it 'is valid with order_id, menu_id, price and quantity' do
+  it 'is valid with order_id, menu_id and quantity' do
     expect(FactoryBot.build(:order_detail)).to be_valid
   end
 
@@ -36,14 +36,6 @@ RSpec.describe OrderDetail, type: :model do
     expect(order_detail.errors[:menu_id]).to include("can't be blank")
   end
 
-  it 'is invalid without a price' do
-    order_detail = FactoryBot.build(:order_detail, price: nil)
-
-    order_detail.valid?
-
-    expect(order_detail.errors[:price]).to include("can't be blank")
-  end
-
   it 'is invalid without a quantity' do
     order_detail = FactoryBot.build(:order_detail, quantity: nil)
 
@@ -52,15 +44,11 @@ RSpec.describe OrderDetail, type: :model do
     expect(order_detail.errors[:quantity]).to include("can't be blank")
   end
 
-  it 'is invalid price accept non numeric values' do
-    order_detail = FactoryBot.build(:order_detail, price: "Seribu")
-    order_detail.valid?
-    expect(order_detail.errors[:price]).to include("is not a number")
-  end
-
   it 'is invalid quantity accept non numeric values' do
     order_detail = FactoryBot.build(:order_detail, quantity: "dua")
+    
     order_detail.valid?
+    
     expect(order_detail.errors[:quantity]).to include("is not a number")
   end
 
