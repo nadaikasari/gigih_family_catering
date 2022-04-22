@@ -50,6 +50,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def report
+    @orders = Order.all
+  end
+
   private
     def set_order
       @order = Order.find(params[:id])
