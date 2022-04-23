@@ -4,7 +4,7 @@ class Order < ApplicationRecord
   has_many :order_details
 
   validates :customer_id, presence: true
-
+  
   def find_customer
     Customer.by_id(self.customer_id).each do |customer|
       return customer.email
