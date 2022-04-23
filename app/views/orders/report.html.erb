@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Report Order</h1>
+<h1>Report Order <%= Date.current %></h1>
 
 <div class="table">
   <table class="table table-bordered">
@@ -13,12 +13,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @orders.each do |order| %>
+      <% @reports.each do |report| %>
         <tr>
-          <td><%= order.order_date %></td>
-          <td><%= order.find_customer %></td>
-          <td><%= order.status %></td>
-          <td></td>
+          <td><%= report.order_date %></td>
+          <td><%= report.find_customer %></td>
+          <td><%= report.status %></td>
+          <td><%= report.count_total_price %></td>
         </tr>
       <% end %>
     </tbody>

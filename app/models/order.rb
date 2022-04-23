@@ -11,6 +11,15 @@ class Order < ApplicationRecord
     end
   end
 
+  def self.report_today
+    where("order_date LIKE ?", "#{Date.current}%").order(:id)
+  end
+
+  def find_by_email(email)
+    where("email LIKE ?", "#{email}%").order(:id)
+  end
+    
+
   def count_quantity
     OrderDetail.by_order_id(self.id).each do |detail_order|
       return OrderDetail.sum(detail_order.quantity)
@@ -32,10 +41,11 @@ class Order < ApplicationRecord
   end
   
   def count_total_price
+    total = []
     OrderDetail.by_order_id(self.id).each do |detail_order|
-      total = detail_order.quantity * detail_order.price
-      return OrderDetail.sum(total)
+      total << detail_order.quantity * detail_order.price
     end
+    return total.inject(0){|sum,x| sum + x }
   end
   
 end

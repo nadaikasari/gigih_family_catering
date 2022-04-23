@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
   end
 
   def report
-    @orders = Order.all
+    @reports = params[:email].nil? ? Order.report_today : Order.find_by_email(params[:email])
   end
 
   private
