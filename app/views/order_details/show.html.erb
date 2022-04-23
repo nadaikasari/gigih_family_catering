@@ -4,7 +4,8 @@
 
 <div>
   <%= link_to "Edit this order detail", edit_order_detail_path(@order_detail) %> |
-  <%= link_to "Back to order details", order_details_path %>
+  <%= link_to "Back to order details", order_details_path %> |
+  <%= link_to "Back to orders", orders_path %>
 
   <%= button_to "Destroy this order detail", @order_detail, method: :delete %>
 </div>
