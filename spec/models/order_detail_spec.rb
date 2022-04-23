@@ -53,9 +53,9 @@ RSpec.describe OrderDetail, type: :model do
   end
 
   it 'should count total, quantity * price' do
-    order_detail = FactoryBot.create(:order_detail, quantity: 3, price: 1000)
+    order_detail = FactoryBot.create(:order_detail, quantity: 3, price: 2000.0)
 
-    expect(3000)
+    expect(order_detail.count_total_price).to eq(6000.0)
   end
 
   describe 'self#by_order_id' do
