@@ -11,7 +11,7 @@ describe MenusController do
       end
 
       it "renders the :index template" do
-        get :index, params: { letter: 'N' }
+        get :index, params: { id: 1 }
         expect(response).to render_template :index
       end
     end

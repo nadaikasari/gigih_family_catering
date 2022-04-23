@@ -34,8 +34,4 @@ RSpec.describe Order, type: :model do
     expect(Order.report_today).to eq([report1])
   end
 
-  it 'should count total price' do
-    
-  end
-  
 end

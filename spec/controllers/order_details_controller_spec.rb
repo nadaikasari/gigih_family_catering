@@ -10,6 +10,7 @@ describe OrderDetailsController do
     end
 
     describe 'GET #index' do
+      context 'without params[:id]' do
         it "populates an array of all Order Details" do 
             order1 = create(:order_detail, order_id: 1, menu_id: 1, price: 10000, quantity: 2)
             order2 = create(:order_detail, order_id: 1, menu_id: 1, price: 10000, quantity: 2)
@@ -21,6 +22,21 @@ describe OrderDetailsController do
             get :index
             expect(response).to render_template :index
         end
+      end
+      
+      context 'with params[:id]' do
+        it "populates an array of all Order Details" do 
+            order1 = create(:order_detail, order_id: 1, menu_id: 1, price: 10000, quantity: 2)
+            order2 = create(:order_detail, order_id: 1, menu_id: 1, price: 30000, quantity: 2)
+            get :index, params: { id: 1 }
+            expect(assigns(:order_details)).to match_array([order1, order2])
+        end
+  
+        it "renders the :index template" do
+          get :index, params: { id: 1 }
+          expect(response).to render_template :index
+        end
+      end
     end
     
     describe 'GET #show' do
