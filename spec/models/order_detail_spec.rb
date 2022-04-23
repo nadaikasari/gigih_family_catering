@@ -52,4 +52,10 @@ RSpec.describe OrderDetail, type: :model do
     expect(order_detail.errors[:quantity]).to include("is not a number")
   end
 
+  it 'should count total, quantity * price' do
+    order_detail = FactoryBot.create(:order_detail, quantity: 3, price: 1000)
+
+    expect(3000)
+  end
+
 end
