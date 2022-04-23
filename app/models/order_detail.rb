@@ -14,7 +14,7 @@ class OrderDetail < ApplicationRecord
     end
   end
 
-  def self.find_menu_name
+  def find_menu_name
     Menu.by_id(self.menu_id).each do |menu|
       return menu.name
     end
