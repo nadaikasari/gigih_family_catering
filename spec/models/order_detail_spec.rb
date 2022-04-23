@@ -58,4 +58,15 @@ RSpec.describe OrderDetail, type: :model do
     expect(3000)
   end
 
+  describe 'self#by_order_id' do
+    context 'with matching id' do
+      it "should return a array of results that match" do
+        order1 = FactoryBot.create(:order_detail, order_id: 1, menu_id: 1)
+        order2 = FactoryBot.create(:order_detail, order_id: 1, menu_id: 1)
+  
+        expect(OrderDetail.by_order_id(1)).to eq([order1, order2])
+      end
+    end
+  end
+
 end
