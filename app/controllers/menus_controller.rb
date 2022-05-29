@@ -1,8 +1,29 @@
+require 'logger'
+require 'json'
+
 class MenusController < ApplicationController
   before_action :set_menu, only: %i[ show edit update destroy ]
 
   def index
     @menus = params[:id].nil? ? Menu.all : Menu.by_id(params[:id])
+    logger = Logger.new(STDOUT)
+    logger.formatter = proc do |severity, datetime, progname, msg|
+      date_format = datetime.strftime('%Y-%m-%d %H:%M:%S')
+      JSON.dump(
+        date: date_format,
+        severity: severity.ljust(5).to_s,
+        pid: Process.pid.to_s,
+        message: msg,
+        progname: progname.to_s
+      ) + "\n"
+    end
+
+    logger.level = Logger::WARN
+    # logger.debug("Fetch #{@menus.count} menus")
+    logger.info('This is info')
+    logger.warn('This is warn')
+    logger.error('This is error')
+    logger.fatal('This is fatal')
   end
 
   def show
